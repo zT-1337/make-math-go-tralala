@@ -1,6 +1,7 @@
 #include "../include/tralala.h"
 #include "../include/musical_notes.h"
 #include <math.h>
+#include <stdlib.h>
 
 #define M_PI 3.14159265358979323846
 
@@ -13,6 +14,10 @@ uint8_t quadratic(uint8_t x) { return x * x * 0.25 + OFFSET; }
 uint8_t logarithmic(uint8_t x) { return log10(x * 2) + OFFSET; }
 
 uint8_t sinus(uint8_t x) { return sin(x * 1.5) * 8 + OFFSET; }
+
+uint8_t randomized(uint8_t x __attribute__((unused))) {
+  return rand() % (NOTE_COUNT + 1);
+}
 
 void math_to_tralala(Wav *audio_data, uint8_t (*do_math)(uint8_t)) {
   uint32_t sample_size_in_bytes =

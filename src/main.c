@@ -3,13 +3,16 @@
 #include "../include/wav.h"
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-#define MATHERS_COUNT 4
+#define MATHERS_COUNT 5
 
 int main() {
+  srand(time(NULL));
   char filename_buffer[128];
   uint8_t (*mathers[MATHERS_COUNT])(uint8_t) = {linear, quadratic, sinus,
-                                                logarithmic};
+                                                logarithmic, randomized};
   for (int i = 0; i < MATHERS_COUNT; ++i) {
     Wav *audio_data =
         init_wav(PCM_AUDIO_FORMAT, STEREO_CHANNEL, CD_SAMPLE_RATE,

@@ -12,5 +12,6 @@ uint8_t linear(uint8_t x);
 uint8_t quadratic(uint8_t x);
 uint8_t logarithmic(uint8_t x);
 uint8_t sinus(uint8_t x);
+uint8_t randomized(uint8_t x);
 
 #endif
