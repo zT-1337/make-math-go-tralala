@@ -4,7 +4,15 @@
 
 #define M_PI 3.14159265358979323846
 
-uint8_t linear(uint8_t x) { return 3 * x; }
+#define OFFSET 16
+
+uint8_t linear(uint8_t x) { return x + OFFSET; }
+
+uint8_t quadratic(uint8_t x) { return x * x * 0.25 + OFFSET; }
+
+uint8_t logarithmic(uint8_t x) { return log10(x * 2) + OFFSET; }
+
+uint8_t sinus(uint8_t x) { return sin(x * 1.5) * 8 + OFFSET; }
 
 void math_to_tralala(Wav *audio_data, uint8_t (*do_math)(uint8_t)) {
   uint32_t sample_size_in_bytes =
