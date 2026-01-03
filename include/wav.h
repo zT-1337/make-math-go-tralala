@@ -12,6 +12,8 @@
 
 // Sample Rate Definitions
 #define CD_SAMPLE_RATE 44100
+#define DVD_SAMPLE_RATE 48000
+#define HIGH_END_SAMPLE_RATE 192000
 
 // Sample Size Definitions
 #define LOWEST_SAMPLE_SIZE_IN_BITS 8
