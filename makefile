@@ -1,6 +1,7 @@
 # Compiler and flags
 CC      = gcc
 CFLAGS  = -Wall -Wpedantic -Wextra -std=c11 -Iinclude -MMD -MP
+LDFLAGS = -lm
 
 # Directories
 SRC_DIR = src
@@ -20,7 +21,7 @@ all: $(TARGET)
 
 # Link
 $(TARGET): $(OBJS)
-	$(CC) $(OBJS) -o $(TARGET)
+	$(CC) $(OBJS) -o $(TARGET) $(LDFLAGS)
 
 # Compile source files into object files
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
