@@ -14,7 +14,9 @@
 #define CD_SAMPLE_RATE 44100
 
 // Sample Size Definitions
+#define LOWEST_SAMPLE_SIZE_IN_BITS 8
 #define DEFAULT_SAMPLE_SIZE_IN_BITS 16
+#define HIGHEST_SAMPLE_SIZE_IN_BITS 32
 
 // Write to file results
 #define WRITE_WAV_SUCCESS 0
