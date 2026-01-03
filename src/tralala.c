@@ -1,6 +1,8 @@
 #include "../include/tralala.h"
 #include "../include/musical_notes.h"
+#include "../include/wav.h"
 #include <math.h>
+#include <stdint.h>
 #include <stdlib.h>
 
 #define M_PI 3.14159265358979323846
@@ -20,15 +22,25 @@ uint8_t randomized(uint8_t x __attribute__((unused))) {
 }
 
 void math_to_tralala(Wav *audio_data, uint8_t (*do_math)(uint8_t)) {
+  uint32_t amplitude;
+  if (audio_data->bits_per_sample == LOWEST_SAMPLE_SIZE_IN_BITS) {
+    amplitude = INT8_MAX;
+  } else if (audio_data->bits_per_sample == HIGHEST_SAMPLE_SIZE_IN_BITS) {
+    amplitude = INT32_MAX;
+  } else {
+    amplitude = INT16_MAX;
+  }
+
   uint32_t sample_size_in_bytes =
       (audio_data->bits_per_sample / 8) * audio_data->channel_count;
+
   uint32_t second_size_in_bytes =
       sample_size_in_bytes * audio_data->sample_rate;
 
   for (uint8_t second = 0; second < AUDIO_LENGTH_IN_SECONDS; ++second) {
     double note_frequency = get_note_frequency(do_math(second));
     for (uint32_t sample = 0; sample < audio_data->sample_rate; ++sample) {
-      int32_t sound = AMPLITUDE * sin((2 * M_PI * note_frequency * sample) /
+      int32_t sound = amplitude * sin((2 * M_PI * note_frequency * sample) /
                                       CD_SAMPLE_RATE);
 
       uint32_t sample_start_position =

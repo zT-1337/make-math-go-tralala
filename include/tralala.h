@@ -5,7 +5,6 @@
 #define ZT_TRALALA_H
 
 #define AUDIO_LENGTH_IN_SECONDS 10
-#define AMPLITUDE INT16_MAX
 
 void math_to_tralala(Wav *data, uint8_t (*do_math)(uint8_t x));
 uint8_t linear(uint8_t x);
