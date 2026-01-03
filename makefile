@@ -36,7 +36,7 @@ $(OBJ_DIR):
 
 # Clean
 clean:
-	rm -rf $(OBJ_DIR) $(TARGET)
+	rm -rf $(OBJ_DIR) $(TARGET) *.wav
 
 .PHONY: all clean
 
