@@ -1,4 +1,5 @@
 #include "../include/wav.h"
+#include "../include/byte_util.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -58,8 +59,8 @@ uint8_t write_wav_to_file(Wav *data, char *filename) {
       // RIFF Header
       0x52, 0x49, 0x46, 0x46,
       // File Size
-      total_file_size & 0xFF, (total_file_size >> 8) & 0xFF,
-      (total_file_size >> 16) & 0xFF, (total_file_size >> 24) & 0xFF,
+      NTH_BYTE_OF(total_file_size, 0), NTH_BYTE_OF(total_file_size, 1),
+      NTH_BYTE_OF(total_file_size, 2), NTH_BYTE_OF(total_file_size, 3),
       // WAVE Header
       0x57, 0x41, 0x56, 0x45,
       // FMT Header
@@ -67,24 +68,25 @@ uint8_t write_wav_to_file(Wav *data, char *filename) {
       // Chunk Size (= 16)
       0x10, 0x00, 0x00, 0x00,
       // Audio Format
-      data->audio_format & 0xFF, (data->audio_format >> 8) & 0xFF,
+      NTH_BYTE_OF(data->audio_format, 0), NTH_BYTE_OF(data->audio_format, 1),
       // Channel Count
-      data->channel_count & 0xFF, (data->channel_count >> 8) & 0xFF,
+      NTH_BYTE_OF(data->channel_count, 0), NTH_BYTE_OF(data->channel_count, 1),
       // Sample Rate
-      data->sample_rate & 0xFF, (data->sample_rate >> 8) & 0xFF,
-      (data->sample_rate >> 16) & 0xFF, (data->sample_rate >> 24) & 0xFF,
+      NTH_BYTE_OF(data->sample_rate, 0), NTH_BYTE_OF(data->sample_rate, 1),
+      NTH_BYTE_OF(data->sample_rate, 2), NTH_BYTE_OF(data->sample_rate, 3),
       // Byte Rate
-      byte_rate & 0xFF, (byte_rate >> 8) & 0xFF, (byte_rate >> 16) & 0xFF,
-      (byte_rate >> 24) & 0xFF,
+      NTH_BYTE_OF(byte_rate, 0), NTH_BYTE_OF(byte_rate, 1),
+      NTH_BYTE_OF(byte_rate, 2), NTH_BYTE_OF(byte_rate, 3),
       // Block Align
-      block_align & 0xFF, (block_align >> 8) & 0xFF,
+      NTH_BYTE_OF(block_align, 0), NTH_BYTE_OF(block_align, 1),
       // BitsPerSample
-      data->bits_per_sample & 0xFF, (data->bits_per_sample >> 8) & 0xFF,
+      NTH_BYTE_OF(data->bits_per_sample, 0),
+      NTH_BYTE_OF(data->bits_per_sample, 1),
       // data header
       0x64, 0x61, 0x74, 0x61,
       // data size
-      sample_bytes_count & 0xFF, (sample_bytes_count >> 8) & 0xFF,
-      (sample_bytes_count >> 16) & 0xFF, (sample_bytes_count >> 24) & 0xFF};
+      NTH_BYTE_OF(sample_bytes_count, 0), NTH_BYTE_OF(sample_bytes_count, 1),
+      NTH_BYTE_OF(sample_bytes_count, 2), NTH_BYTE_OF(sample_bytes_count, 3)};
 
   size_t written_header_bytes =
       fwrite(wav_header, 1, WAV_HEADER_SIZE_IN_BYTES, wav_file);

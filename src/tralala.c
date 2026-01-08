@@ -1,4 +1,5 @@
 #include "../include/tralala.h"
+#include "../include/byte_util.h"
 #include "../include/musical_notes.h"
 #include "../include/wav.h"
 #include <math.h>
@@ -54,7 +55,7 @@ void math_to_tralala(Wav *audio_data, uint8_t (*do_math)(uint8_t)) {
              sample_byte < (audio_data->bits_per_sample / 8); ++sample_byte) {
           audio_data->sample_bytes[sample_start_position + channel_offset +
                                    sample_byte] =
-              (sound >> (8 * sample_byte)) & 0xFF;
+              NTH_BYTE_OF(sound, sample_byte);
         }
       }
     }
