@@ -38,5 +38,8 @@ $(OBJ_DIR):
 clean:
 	rm -rf $(OBJ_DIR) $(TARGET) *.wav
 
+run: all
+	./$(TARGET)
+
 .PHONY: all clean
 
