@@ -34,11 +34,10 @@ uint8_t generate_wav_files(Options *opts) {
 }
 
 int main(int argc, char **argv) {
-  Options *opts = parse_options(argc, argv);
+  Options opts = parse_options(argc, argv);
 
   srand(time(NULL));
-  uint8_t result = generate_wav_files(opts);
+  uint8_t result = generate_wav_files(&opts);
 
-  free(opts);
   return result;
 }

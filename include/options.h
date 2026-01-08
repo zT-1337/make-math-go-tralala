@@ -9,6 +9,6 @@ typedef struct Options {
   uint32_t sample_rate;
 } Options;
 
-Options *parse_options(int argc, char **argv);
+Options parse_options(int argc, char **argv);
 
 #endif
