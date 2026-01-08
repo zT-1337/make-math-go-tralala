@@ -23,8 +23,7 @@
 // Write to file results
 #define WRITE_WAV_SUCCESS 0
 #define WRITE_WAV_COULD_NOT_OPEN_ERROR 1
-#define WRITE_WAV_COULD_NOT_WRITE_HEADER 2
-#define WRITE_WAV_COULD_NOT_WRITE_DATA 3
+#define WRITE_WAV_FILE_FAILED 2
 
 typedef struct Wav {
   uint16_t audio_format;

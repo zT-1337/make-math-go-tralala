@@ -25,7 +25,7 @@ uint8_t generate_wav_files(Options *opts) {
     uint8_t write_result = write_wav_to_file(audio_data, filename_buffer);
     free_wav(audio_data);
 
-    if (write_result != 0) {
+    if (write_result != WRITE_WAV_SUCCESS) {
       return write_result;
     }
   }
