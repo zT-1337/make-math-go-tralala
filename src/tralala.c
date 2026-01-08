@@ -25,10 +25,10 @@ void math_to_tralala(Wav *audio_data, uint8_t (*do_math)(uint8_t)) {
   uint32_t amplitude;
   if (audio_data->bits_per_sample == LOWEST_SAMPLE_SIZE_IN_BITS) {
     amplitude = INT8_MAX;
-  } else if (audio_data->bits_per_sample == HIGHEST_SAMPLE_SIZE_IN_BITS) {
-    amplitude = INT32_MAX;
-  } else {
+  } else if (audio_data->bits_per_sample == DEFAULT_SAMPLE_SIZE_IN_BITS) {
     amplitude = INT16_MAX;
+  } else {
+    amplitude = INT32_MAX;
   }
 
   uint32_t sample_size_in_bytes =
