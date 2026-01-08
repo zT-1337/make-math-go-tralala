@@ -8,6 +8,7 @@
 #include <time.h>
 
 #define MATHERS_COUNT 5
+#define FAILED_TO_INIT_WAV_STRUCT -1
 
 uint8_t generate_wav_files(Options *opts) {
   char filename_buffer[128];
@@ -18,6 +19,9 @@ uint8_t generate_wav_files(Options *opts) {
     Wav *audio_data =
         init_wav(PCM_AUDIO_FORMAT, opts->channel_count, opts->sample_rate,
                  opts->bits_per_sample, AUDIO_LENGTH_IN_SECONDS);
+    if (audio_data == NULL) {
+      return FAILED_TO_INIT_WAV_STRUCT;
+    }
 
     math_to_tralala(audio_data, mathers[i]);
 
@@ -28,6 +32,8 @@ uint8_t generate_wav_files(Options *opts) {
     if (write_result != WRITE_WAV_SUCCESS) {
       return write_result;
     }
+
+    printf("Generated %s\n", filename_buffer);
   }
 
   return 0;
