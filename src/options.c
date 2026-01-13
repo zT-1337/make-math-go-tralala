@@ -1,9 +1,8 @@
 #include "../include/options.h"
 #include "../include/wav.h"
-#include <bits/getopt_core.h>
+#include <getopt.h>
 #include <stdint.h>
 #include <stdlib.h>
-#include <unistd.h>
 
 Options parse_options(int argc, char **argv) {
   Options opts = {.channel_count = STEREO_CHANNEL,
